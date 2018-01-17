@@ -1,5 +1,6 @@
 'use strict';
-module.exports = () => {
+module.exports = (() => {
   'use strict';
   window.Codenut = window.Codenut || {};
-};
+  Codenut.libs = {}
+})();

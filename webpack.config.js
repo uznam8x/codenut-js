@@ -6,7 +6,7 @@ module.exports = {
     path: __dirname + '/dist',
     filename: 'codenut.min.js',
   },
-  cache: true,
+  cache: false,
   module: {
     loaders: [
       {
@@ -32,4 +32,6 @@ module.exports = {
       sourceMap: false,
     }),
   ],
+
+  watch:true
 };

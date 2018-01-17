@@ -1,5 +1,5 @@
 'use strict';
-module.exports = () => {
+module.exports = (() => {
   'use strict';
   Codenut.util = {
     guid: () => {
@@ -20,4 +20,4 @@ module.exports = () => {
       });
     },
   }
-};
+})();

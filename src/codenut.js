@@ -1,9 +1,10 @@
-module.exports = () => {
+module.exports = (() => {
   'use strict';
   require('./lib/core');
   require('./lib/request');
   require('./lib/selector');
-  require('./lib/breakpoint');
+  require('./lib/screen');
   require('./lib/util');
   require('./lib/event');
-};
+  require('./lib/component');
+})();

@@ -1,5 +1,5 @@
 'use strict';
-module.exports = () => {
+module.exports = (() => {
   'use strict';
   Codenut.request = () => {
     const query = {};
@@ -10,4 +10,4 @@ module.exports = () => {
     );
     return query;
   }
-};
+})();
