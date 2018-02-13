@@ -1,5 +1,4 @@
-'use strict';
-module.exports = function() {
+define( ['./core'], (Codenut) => {
   'use strict';
   Codenut.util = {
     guid: () => {
@@ -19,5 +18,5 @@ module.exports = function() {
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
       });
     },
-  }
-}
+  };
+});

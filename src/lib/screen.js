@@ -1,13 +1,11 @@
-'use strict';
-const MobileDetect = require('mobile-detect');
-
-module.exports = function() {
+define(['./core'], (Codenut) => {
   'use strict';
+  const MobileDetect = require('mobile-detect');
 
   // mobile-detect;
   Codenut.libs['mobile-detect'] = MobileDetect;
 
-  // style parse
+// style parse
   let style = null;
   if (window.getComputedStyle && window.getComputedStyle(document.documentElement, '::before')) {
     style = window.getComputedStyle(document.documentElement, '::before').content;
@@ -22,7 +20,7 @@ module.exports = function() {
     browser: '',
   };
 
-  // break point
+// break point
   const resize = () => {
     Codenut.screen = {
       mode: null,
@@ -59,7 +57,7 @@ module.exports = function() {
 
   window.removeEventListener('resize', resize);
   window.addEventListener('resize', resize);
-  resize();
+  document.addEventListener("DOMContentLoaded", resize);
 
   // device
   const md = new MobileDetect(window.navigator.userAgent);
@@ -68,14 +66,14 @@ module.exports = function() {
   if (md.tablet()) device = 'tablet';
   Codenut.screen.device = device;
 
-  // os
+// os
   Codenut.screen.os = md.os() || window.navigator.platform;
   Codenut.screen.os = Codenut.screen.os.toLowerCase();
 
   document.querySelector('html').setAttribute('data-screen-device', Codenut.screen.device);
   document.querySelector('html').setAttribute('data-screen-os', Codenut.screen.os);
 
-  // browser
+// browser
   const browser = {
     'opera': (() => {
       return (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -105,5 +103,5 @@ module.exports = function() {
     }
   }
   document.querySelector('html').setAttribute('data-screen-browser', Codenut.screen.browser);
+});
 
-}

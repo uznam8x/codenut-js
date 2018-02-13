@@ -1,5 +1,4 @@
-'use strict';
-module.exports = function() {
+define( ['./core'], (Codenut) => {
   'use strict';
-  Codenut.component = {}
-}
+  Codenut.component = {};
+});

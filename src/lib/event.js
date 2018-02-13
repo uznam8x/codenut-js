@@ -1,7 +1,4 @@
 'use strict';
-module.exports = function() {
-  'use strict';
-  Codenut.event = () => {
-
-  }
-}
+define( ['./core'], (Codenut) => {
+  Codenut.event = () => {}
+});

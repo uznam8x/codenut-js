@@ -1,4 +1,4 @@
-module.exports = function(){
+module.exports = (() => {
   'use strict';
   require('./lib/core');
   require('./lib/request');
@@ -7,4 +7,4 @@ module.exports = function(){
   require('./lib/util');
   require('./lib/event');
   require('./lib/component');
-};
+})();

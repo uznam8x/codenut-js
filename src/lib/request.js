@@ -1,5 +1,4 @@
-'use strict';
-module.exports = function() {
+define( ['./core'], (Codenut) => {
   'use strict';
   Codenut.request = () => {
     const query = {};
@@ -9,5 +8,5 @@ module.exports = function() {
       }
     );
     return query;
-  }
-}
+  };
+});

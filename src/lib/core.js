@@ -1,6 +1,6 @@
-'use strict';
-module.exports = function() {
+define( [], () => {
   'use strict';
   window.Codenut = window.Codenut || {};
-  Codenut.libs = {}
-}
+  Codenut.libs = {};
+  return Codenut;
+});
