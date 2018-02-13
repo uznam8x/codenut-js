@@ -1,7 +1,7 @@
 'use strict';
 const MobileDetect = require('mobile-detect');
 
-module.exports = (() => {
+module.exports = function() {
   'use strict';
 
   // mobile-detect;
@@ -19,7 +19,7 @@ module.exports = (() => {
     breakpoint: {},
     device: 'pc',
     os: 'window',
-    browser:'',
+    browser: '',
   };
 
   // break point
@@ -106,4 +106,4 @@ module.exports = (() => {
   }
   document.querySelector('html').setAttribute('data-screen-browser', Codenut.screen.browser);
 
-})();
+}

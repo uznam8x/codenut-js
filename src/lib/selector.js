@@ -1,7 +1,7 @@
 'use strict';
-module.exports = (() => {
+module.exports = function() {
   'use strict';
   Codenut.selector = () => {
 
   }
-})();
+}
