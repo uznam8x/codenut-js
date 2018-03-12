@@ -1,6 +1,6 @@
-(function (ElementProto) {
-  if (typeof ElementProto.matches !== 'function') {
-    ElementProto.matches = ElementProto.msMatchesSelector || ElementProto.mozMatchesSelector || ElementProto.webkitMatchesSelector || function matches(selector) {
+(function () {
+  if (typeof window.Element.prototype.matches !== 'function') {
+    window.Element.prototype.matches = window.Element.prototype.msMatchesSelector || window.Element.prototype.mozMatchesSelector || window.Element.prototype.webkitMatchesSelector || function matches(selector) {
       let element = this;
       let elements = (element.document || element.ownerDocument).querySelectorAll(selector);
       let index = 0;
@@ -10,8 +10,8 @@
       return Boolean(elements[index]);
     };
   }
-  if (typeof ElementProto.closest !== 'function') {
-    ElementProto.closest = function closest(selector) {
+  if (typeof window.Element.prototype.closest !== 'function') {
+    window.Element.prototype.closest = function closest(selector) {
       let element = this;
       while (element && element.nodeType === 1) {
         if (element.matches(selector)) {
@@ -22,15 +22,78 @@
       return null;
     };
   }
-})(window.Element.prototype);
+})();
+
+(function () {
+  if (!document.documentElement.classList) {
+
+    // helpers
+    let regExp = function (name) {
+      return new RegExp('(^| )' + name + '( |$)');
+    };
+    let forEach = function (list, fn, scope) {
+      for (var i = 0; i < list.length; i++) {
+        fn.call(scope, list[i]);
+      }
+    };
+
+    // class list object with basic methods
+    function ClassList(element) {
+      this.element = element;
+    }
+
+    ClassList.prototype = {
+      add: function () {
+        forEach(arguments, function (name) {
+          if (!this.contains(name)) {
+            this.element.className += this.element.className.length > 0 ? ' ' + name : name;
+          }
+        }, this);
+      },
+      remove: function () {
+        forEach(arguments, function (name) {
+          this.element.className =
+            this.element.className.replace(regExp(name), '');
+        }, this);
+      },
+      toggle: function (name) {
+        return this.contains(name)
+          ? (this.remove(name), false) : (this.add(name), true);
+      },
+      contains: function (name) {
+        return regExp(name).test(this.element.className);
+      },
+      // bonus..
+      replace: function (oldName, newName) {
+        this.remove(oldName), this.add(newName);
+      }
+    };
+
+    // IE8/9, Safari
+    if (!('classList' in Element.prototype)) {
+      Object.defineProperty(Element.prototype, 'classList', {
+        get: function () {
+          return new ClassList(this);
+        }
+      });
+    }
+
+    // replace() support for others
+    if (window.DOMTokenList && DOMTokenList.prototype.replace == null) {
+      DOMTokenList.prototype.replace = ClassList.prototype.replace;
+    }
+  }
+
+
+})();
 
 // Object
-(function(){
+(function () {
   if (!Object.keys) {
-    Object.keys = (function() {
+    Object.keys = (function () {
       'use strict';
       var hasOwnProperty = Object.prototype.hasOwnProperty,
-        hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+        hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
         dontEnums = [
           'toString',
           'toLocaleString',
@@ -42,7 +105,7 @@
         ],
         dontEnumsLength = dontEnums.length;
 
-      return function(obj) {
+      return function (obj) {
         if (typeof obj !== 'function' && (typeof obj !== 'object' || obj === null)) {
           throw new TypeError('Object.keys called on non-object');
         }
@@ -92,10 +155,11 @@
   }
 
   if (typeof Object.create != 'function') {
-    Object.create = (function(undefined) {
-      var Temp = function() {};
+    Object.create = (function (undefined) {
+      var Temp = function () {
+      };
       return function (prototype, propertiesObject) {
-        if(prototype !== Object(prototype) && prototype !== null) {
+        if (prototype !== Object(prototype) && prototype !== null) {
           throw TypeError('Argument must be an object, or null');
         }
         Temp.prototype = prototype || {};
@@ -105,7 +169,7 @@
         var result = new Temp();
         Temp.prototype = null;
         // Object.create(null)인 경우 모방
-        if(prototype === null) {
+        if (prototype === null) {
           result.__proto__ = null;
         }
         return result;
@@ -201,7 +265,7 @@
 })();
 
 // String
-(function(){
+(function () {
   if (!String.prototype.trim) {
     String.prototype.trim = function () {
       return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
