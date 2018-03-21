@@ -1,7 +1,8 @@
 module.exports = (() => {
   'use strict';
-  require('./lib/polyfill');
   require('./lib/core');
+  require('./lib/layer');
+  require('./lib/polyfill');
   require('./lib/request');
   require('./lib/selector');
   require('./lib/screen');
