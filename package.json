@@ -1,6 +1,6 @@
 {
   "name": "codenut-js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "You can use the [editor on GitHub](https://github.com/uznam8x/codenut-js/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
   "main": "src/codenut.js",
   "scripts": {
