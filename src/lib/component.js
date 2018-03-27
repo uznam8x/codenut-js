@@ -11,7 +11,7 @@ define(['./core'], (Codenut) => {
     });
     init(component);
 
-    if (Codenut.request.debug) {
+    if (Codenut.request().debug && Codenut.request().debug === "true") {
       console.log('%ccodenut component : "' + name + '" initialized', 'color:#133783');
     }
   };
