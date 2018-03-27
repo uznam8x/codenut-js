@@ -272,3 +272,27 @@
     };
   }
 })();
+
+// Event
+(function () {
+  function CustomEvent ( event, params ) {
+    params = params || {};
+    const obj = {bubbles: false, cancelable: false, detail: undefined};
+    for (let key in obj) {
+      if (params[key]) {
+        obj[key] = params[key];
+        delete params[key];
+      }
+    }
+
+    let evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(event, obj.bubbles, obj.cancelable, obj.detail);
+    for (let key in params) {
+      evt[key] = params[key];
+    }
+    return evt;
+  }
+
+  CustomEvent.prototype = window.Event.prototype;
+  window.CustomEvent = CustomEvent;
+})();
