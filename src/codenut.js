@@ -9,4 +9,5 @@ module.exports = (() => {
   require('./lib/util');
   require('./lib/event');
   require('./lib/component');
+  require('./lib/scrollspy');
 })();
