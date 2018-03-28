@@ -1,4 +1,6 @@
 define( ['./core'], (Codenut) => {
   'use strict';
-  Codenut.selector = () => {}
+  Codenut.selector = (query) => {
+    return document.querySelectorAll(query);
+  }
 });

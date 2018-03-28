@@ -1,5 +1,6 @@
 define(['./core'], (Codenut) => {
   'use strict';
+  require('../stylesheet/layer.scss');
   let timeout = null;
   Codenut.layer = {
     item: [],

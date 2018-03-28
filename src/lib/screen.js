@@ -2,10 +2,7 @@ define(['./core'], (Codenut) => {
   'use strict';
   const MobileDetect = require('mobile-detect');
 
-  // mobile-detect;
-  Codenut.libs['mobile-detect'] = MobileDetect;
-
-// style parse
+  // style parse
   let style = null;
   if (window.getComputedStyle && window.getComputedStyle(document.documentElement, '::before')) {
     style = window.getComputedStyle(document.documentElement, '::before').content;

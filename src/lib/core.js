@@ -1,6 +1,8 @@
 define( [], () => {
   'use strict';
   window.Codenut = window.Codenut || {};
-  Codenut.libs = {};
-  return Codenut;
+  window.Codenut.version = '1.0.9';
+  window.Codenut.website = 'http://codenut.prisf.com';
+  window.Codenut.mail = 'uznam8x@gmail.com';
+  return window.Codenut;
 });

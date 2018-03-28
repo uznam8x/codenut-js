@@ -1,6 +1,6 @@
-'use strict';
 define(['./core'], (Codenut) => {
-  var on = ['click', 'change', 'mouseenter', 'mouseleave', 'mousemove', 'mousewheel', 'focus', 'focusout', 'blur', 'submit', 'scroll'];
+  'use strict';
+  const on = ['click', 'change', 'mouseenter', 'mouseleave', 'mousemove', 'mousewheel', 'focus', 'focusout', 'blur', 'submit', 'scroll'];
 
   const index = function (obj, is, value) {
     if (typeof is === 'string')

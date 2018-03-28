@@ -1,7 +1,7 @@
 {
   "name": "codenut-js",
-  "version": "1.0.8",
-  "description": "You can use the [editor on GitHub](https://github.com/uznam8x/codenut-js/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
+  "version": "1.0.9",
+  "description": "ui javascript for Codenut",
   "main": "src/codenut.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,7 @@
     "url": "git+https://github.com/uznam8x/codenut-js.git"
   },
   "author": "",
-  "license": "MIT",
-
+  "license": "GPLv2",
   "bugs": {
     "url": "https://github.com/uznam8x/codenut-js/issues"
   },
@@ -21,6 +20,8 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
+    "codenut-style": "^0.1.5",
+    "css-loader": "^0.28.11",
     "gsap": "^1.20.3",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
@@ -29,6 +30,9 @@
     "lodash": "^4.17.4",
     "mobile-detect": "^1.4.1",
     "moment": "^2.20.1",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
     "through2": "^2.0.3",
     "webpack": "^3.8.1",
     "webpack-stream": "^4.0.0"

@@ -1,8 +1,8 @@
 define(['./core'], (Codenut) => {
   'use strict';
 
-  var Initialize = function (name, init) {
-    var component = [];
+  const Initialize = function (name, init) {
+    let component = [];
     _.each(document.documentElement.querySelectorAll('[data-codenut="' + name + '"]'), (node) => {
       if (!node.getAttribute('data-codenut-status')) {
         node.setAttribute('data-codenut-status', 'initialized');
@@ -11,7 +11,7 @@ define(['./core'], (Codenut) => {
     });
     init(component);
 
-    if (Codenut.request().debug && Codenut.request().debug === "true") {
+    if (Codenut.request().debug && Codenut.request().debug === 'true') {
       console.log('%ccodenut component : "' + name + '" initialized', 'color:#133783');
     }
   };
@@ -21,7 +21,7 @@ define(['./core'], (Codenut) => {
       throw new Error('not found initialize method in ' + name);
     }
 
-    var initialize = new Initialize(name, init);
+    const initialize = new Initialize(name, init);
     document.addEventListener(Codenut.Event.DOM_MODIFIED, initialize);
     document.addEventListener('DOMContentLoaded', initialize);
   };
