@@ -34,4 +34,10 @@ define(['./core'], (Codenut) => {
       }
     },
   };
+
+  document.documentElement.addEventListener('touchmove', (e) => {
+    if(document.querySelector('body').classList.contains('layer--activate')){
+      e.preventDefault();
+    }
+  }, false);
 });
