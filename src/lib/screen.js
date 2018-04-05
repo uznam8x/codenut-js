@@ -7,6 +7,10 @@ define(['./core'], (Codenut) => {
   if (window.getComputedStyle && window.getComputedStyle(document.documentElement, '::before')) {
     style = window.getComputedStyle(document.documentElement, '::before').content;
   }
+
+  Codenut.Event = _.merge(Codenut.Event, {
+    CHANGE_SCREEN: 'Event.CHANGE_SCREEN'
+  });
   Codenut.screen = {
     mode: null,
     width: window.innerWidth,
@@ -15,16 +19,16 @@ define(['./core'], (Codenut) => {
     device: 'pc',
     os: 'window',
     browser: '',
+    scroll: {x: 0, y: 0}
   };
 
-// break point
+  // break point
   const resize = () => {
-    Codenut.screen = {
-      mode: null,
+    Codenut.screen = _.merge(Codenut.screen, {
       width: window.innerWidth,
       height: window.innerHeight,
       breakpoint: {},
-    };
+    });
     if (style) {
       style = style
         .replace(/^['"]+|\s+|\\|(;\s?})+|['"]$/g, '')
@@ -41,11 +45,17 @@ define(['./core'], (Codenut) => {
           }
         }
 
+        const MODE = Codenut.screen.mode;
+
         if (Codenut.screen.width >= Codenut.screen.breakpoint['xs']) Codenut.screen.mode = 'xs';
         if (Codenut.screen.width >= Codenut.screen.breakpoint['sm']) Codenut.screen.mode = 'sm';
         if (Codenut.screen.width >= Codenut.screen.breakpoint['md']) Codenut.screen.mode = 'md';
         if (Codenut.screen.width >= Codenut.screen.breakpoint['lg']) Codenut.screen.mode = 'lg';
         if (Codenut.screen.width >= Codenut.screen.breakpoint['xl']) Codenut.screen.mode = 'xl';
+
+        if (MODE !== Codenut.screen.mode) {
+          document.dispatchEvent(new CustomEvent(Codenut.Event.CHANGE_SCREEN, {screen: Codenut.screen}));
+        }
       }
 
       document.querySelector('html').setAttribute('data-screen-mode', Codenut.screen.mode);
@@ -63,14 +73,14 @@ define(['./core'], (Codenut) => {
   if (md.tablet()) device = 'tablet';
   Codenut.screen.device = device;
 
-// os
+  // os
   Codenut.screen.os = md.os() || window.navigator.platform;
   Codenut.screen.os = Codenut.screen.os.toLowerCase();
 
   document.querySelector('html').setAttribute('data-screen-device', Codenut.screen.device);
   document.querySelector('html').setAttribute('data-screen-os', Codenut.screen.os);
 
-// browser
+  // browser
   const browser = {
     'opera': (() => {
       return (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -100,5 +110,16 @@ define(['./core'], (Codenut) => {
     }
   }
   document.querySelector('html').setAttribute('data-screen-browser', Codenut.screen.browser);
-});
 
+  // scroll
+  Codenut.Event = _.merge(Codenut.Event, {
+    SCROLL: 'Event.SCROLL'
+  });
+  window.addEventListener('scroll', (e) => {
+    Codenut.screen.scroll = {
+      y: document.documentElement.scrollTop || window.pageYOffset,
+      x: document.documentElement.scrollLeft || window.pageXOffset
+    };
+    document.dispatchEvent(new CustomEvent(Codenut.Event.SCROLL, {scroll: Codenut.screen.scroll}));
+  })
+});

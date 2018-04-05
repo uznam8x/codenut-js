@@ -1,4 +1,4 @@
-define( ['./core'], (Codenut) => {
+define(['./core'], (Codenut) => {
   'use strict';
   Codenut.util = {
     guid: () => {
