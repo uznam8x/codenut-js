@@ -1,6 +1,6 @@
 {
   "name": "codenut-js",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "ui javascript for Codenut",
   "main": "src/codenut.js",
   "scripts": {

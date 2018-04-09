@@ -6,7 +6,6 @@ module.exports = (() => {
   require('./lib/element');
   require('./lib/layer');
   require('./lib/request');
-  require('./lib/selector');
   require('./lib/screen');
   require('./lib/util');
   require('./lib/component');
